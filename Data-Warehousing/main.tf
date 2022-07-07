@@ -12,7 +12,7 @@ resource "aws_redshift_cluster" "example" {
 }
 
 resource "aws_iam_role" "test_role" {
-  name = "moses_role"
+  name = var.rolename
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.

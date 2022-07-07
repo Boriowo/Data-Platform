@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "ETL-Job" {
-    source = "./Data-Ingestion"
+    source = "./data glue"
     name = "catalogdatabase"
     catalogtable = "mycatalogtable"
     crawlername = "example"
@@ -22,7 +22,7 @@ module "ETL-Job" {
 
 #calling the data warehouse module
 module "Warehouse" {
-  source = "./Data-Warehouse"
+  source = "./data warehouse"
   region = "us-east-1"
   clusterid = "tf-redshift-cluster"
   dbname = "mydb" 
@@ -33,7 +33,7 @@ module "Warehouse" {
 
 #calling the data query module
 module "Query" {
-  source = "./Data-Modelling"
+  source = "./data query"
   region = "us-east-1"
   bucket = "dami-bucket"
   catalogname = "glue-data-catalog"
@@ -41,4 +41,17 @@ module "Query" {
   identity = "123456789012"
   database_name = "users"
   query_name = "users"
+}
+
+#calling the data vixualization module
+module "visual" {
+  source = "./data visual"
+  region = "us-east-1"
+  rolename = "our_role"
+  session_name = "an-author"
+  user_email = "boriowo@ismiletechnologies.com"
+  namespace = "default"
+  datasource = "example-id"
+  datasource_name = "My Cool Data in S3"
+  workgroup = "./data query.aws_athena_workgroup.example.workgroup"
 }
