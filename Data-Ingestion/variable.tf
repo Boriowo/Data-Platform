@@ -13,7 +13,10 @@ variable "crawlername" {
     description = "Enter the name of your crawler"
 }
 
-variable "role" {}
+# variable "role" {
+#   type = string
+#   description = "Your iam role"
+# }
 
 variable "description" {
   default = ""
@@ -25,10 +28,10 @@ variable "schedule" {
 
 variable "table_prefix" {}
 
-variable "s3_path" {
-    type = string
-    description = "Enter the path for bucket"
-}
+# variable "s3_path" {
+#     type = string
+#     description = "Enter the path for bucket"
+# }
 
 variable "classifier" {
   type = string
@@ -58,4 +61,31 @@ variable "csvcrawl" {
 variable "iam" {
   type = string
   description = "Enter your iam name"
+}
+variable "endpoint_name" {
+  type = string 
+  description = "Enter your endpoint name"
+}
+
+variable "glueregistry" {
+  type = string
+  description = "Enter your glue registry name"
+}
+
+variable "schema_name" {
+  type = string
+  description = "Enter your schema name"
+}
+
+variable "data_format" {
+  default = "AVRO"
+}
+
+variable "compatibility" {
+  default = "NONE"
+}
+
+variable "schema_type" {
+  type = string
+  description = "Enter you schema type"
 }

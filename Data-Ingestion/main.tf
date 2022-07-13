@@ -49,14 +49,15 @@ resource "aws_glue_catalog_table" "source" {
 resource "aws_glue_crawler" "example" {
   database_name = aws_glue_catalog_database.glue_catalog_database1.name
   name          = var.crawlername
-  role          = "${var.role}"
+  role          = aws_iam_role.example.arn
+  classifiers = [aws_glue_classifier.example.id]
 
   schedule     = "${var.schedule}"
   table_prefix = "${var.table_prefix}"
   description  = "${var.description}"
 
   s3_target {
-    path = var.s3_path
+    path = "s3://${aws_s3_bucket.exam.bucket}"
   }
 }
 
@@ -83,29 +84,22 @@ resource "aws_glue_classifier" "example" {
   }
 }
 
-resource "aws_glue_crawler" "aws_glue_custom_csv_crawler" {
-  name = var.csvcrawl
-  database_name = aws_glue_catalog_database.glue_catalog_database1.name
-  classifiers = [aws_glue_classifier.example.id]
-  role = aws_iam_role.example.arn
-}
-
 resource "aws_glue_dev_endpoint" "example" {
-  name     = "foo"
+  name     = var.endpoint_name
   role_arn = aws_iam_role.example.arn
 }
 
 
 resource "aws_glue_registry" "test" {
-  registry_name = "example"
+  registry_name = var.glueregistry
 }
 
 resource "aws_glue_schema" "example" {
-  schema_name       = "example"
+  schema_name       = var.schema_name
   registry_arn      = aws_glue_registry.test.arn
-  data_format       = "AVRO"
-  compatibility     = "NONE"
-  schema_definition = "{\"type\": \"record\", \"name\": \"r1\", \"fields\": [ {\"name\": \"f1\", \"type\": \"int\"}, {\"name\": \"f2\", \"type\": \"string\"} ]}"
+  data_format       = var.data_format
+  compatibility     = var.compatibility
+  schema_definition = var.schema_type
 }
 
 
