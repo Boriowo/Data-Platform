@@ -1,3 +1,8 @@
+variable "region" {
+  type = string
+  description = "Enter your preferred region"
+}
+
 variable "name" {
     type = string
     description = "Enter your catalog database name"
