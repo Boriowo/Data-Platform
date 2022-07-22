@@ -19,7 +19,7 @@ module "ETL-Job" {
   bname         = "dami-bucket"
   csvcrawl      = "custom-csv-crawler"
   iam           = "AWSGlueServiceRole-foo"
-  endpoint_name = "ise_oluwa"
+  endpoint_name = "ise_oluwa1"
   glueregistry  = "example"
   schema_name   = "example"
   schema_type   = "{\"type\": \"record\", \"name\": \"r1\", \"fields\": [ {\"name\": \"f1\", \"type\": \"int\"}, {\"name\": \"f2\", \"type\": \"string\"} ]}"

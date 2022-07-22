@@ -52,9 +52,9 @@ resource "aws_glue_crawler" "example" {
   role          = aws_iam_role.example.arn
   classifiers = [aws_glue_classifier.example.id]
 
-  schedule     = "${var.schedule}"
-  table_prefix = "${var.table_prefix}"
-  description  = "${var.description}"
+  schedule     = var.schedule
+  table_prefix = var.table_prefix
+  description  = var.description
 
   s3_target {
     path = "s3://${aws_s3_bucket.exam.bucket}"
