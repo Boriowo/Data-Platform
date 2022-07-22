@@ -1,7 +1,7 @@
-variable "region" {
-  type = string
-  description = "Enter your region"  
-}
+# variable "region" {
+#   type = string
+#   description = "Enter your region"  
+#}
 
 variable "name" {
     type = string
