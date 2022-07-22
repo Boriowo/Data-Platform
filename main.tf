@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "ETL-Job" {
-  source       = "./data glue"
+  source       = "./Data-Ingestion"
   region       = "us-east-1"
   name         = "catalogdatabase"
   catalogtable = "mycatalogtable"
@@ -27,7 +27,7 @@ module "ETL-Job" {
 
 #calling the data warehouse module
 module "Warehouse" {
-  source          = "./data warehouse"
+  source          = "./Data-Warehousing"
   region          = "us-east-1"
   clusterid       = "oluwa-redshift-cluster"
   dbname          = "mydb"
@@ -38,7 +38,7 @@ module "Warehouse" {
 
 #calling the data query module
 module "Query" {
-  source          = "./data query"
+  source          = "./Data-Modelling"
   region          = "us-east-1"
   rolename        = "our_role"
   bucket          = "dami-bucket"
