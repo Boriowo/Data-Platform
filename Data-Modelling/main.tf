@@ -129,14 +129,14 @@ resource "aws_kms_key" "test" {
   policy = data.aws_iam_policy_document.example.json
 }
 
-resource "aws_quicksight_data_source" "default" {
-  data_source_id = var.datasource
-  name           = var.datasource_name
+# resource "aws_quicksight_data_source" "default" {
+#   data_source_id = var.datasource
+#   name           = var.datasource_name
 
-  parameters {
-    athena {
-              work_group = aws_athena_workgroup.test.name
-    }
-  }
-  type = "ATHENA"
-  }
+#   parameters {
+#     athena {
+#               work_group = aws_athena_workgroup.test.name
+#     }
+#   }
+#   type = "ATHENA"
+#   }
