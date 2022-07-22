@@ -4,7 +4,7 @@ provider "aws" {
 
 module "ETL-Job" {
   source       = "./Data-Ingestion"
-  region       = "us-east-1"
+  #region       = "us-east-1"
   name         = "catalogdatabase"
   catalogtable = "mycatalogtable"
   crawlername  = "example"
