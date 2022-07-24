@@ -2,6 +2,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
+terraform {
+    backend "s3" {
+        encrypt = true
+        bucket = "network-logfiles"
+        key = "Data-Platform/terraform.tfstate"
+        region = "us-east-1"
+    }
+}
+
 module "ETL-Job" {
   source       = "./Data-Ingestion"
   #region       = "us-east-1"
